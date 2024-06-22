@@ -1,0 +1,251 @@
+
+
+.container .gallery {
+  height: 400px;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  border-radius: 0.25rem;
+  
+}
+
+.container .panel-container {
+  border-radius: 0.25rem;
+  outline: 1px solid #dfd0b8;
+  position: relative;
+  width: 10%;
+  background: #eee;
+  transition: width 3s, visibility 2s;
+  user-select: none;
+}
+
+.container .panel-container:nth-child(1) {
+  visibility: hidden;
+  transform: translateY(-100%);
+  animation: fall 2s 0s forwards;
+}
+
+.container .panel-container:nth-child(2) {
+  visibility: hidden;
+  transform: translateY(100%);
+  animation: fly 2s 0.5s forwards;
+}
+
+.container .panel-container:nth-child(3) {
+  visibility: hidden;
+  transform: translateY(-100%);
+  animation: fall 2s 1s forwards;
+}
+
+.container .panel-container:nth-child(4) {
+  visibility: hidden;
+  transform: translateY(100%);
+  animation: fly 2s 1.5s forwards;
+}
+
+.container .panel-container:nth-child(5) {
+  visibility: hidden;
+  transform: translateY(-100%);
+  animation: fall 2s 2s forwards;
+}
+
+.container .panel-container:hover {
+  cursor: pointer;
+  outline-color: #948979;
+}
+
+.container .panel-container:has(.panel-control:checked) {
+  width: 60%;
+}
+
+.container .panel-container:has(.panel-control:checked):hover {
+  user-select: initial;
+  cursor: initial;
+  outline-color: #dfd0b8;
+}
+
+.container .panel {
+  height: 100%;
+  padding: 10px;
+  position: relative;
+}
+
+.container .panel-img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 0.25rem;
+  object-fit: cover;
+}
+
+.container .panel-id {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.75);
+  transform: rotate(90deg) translateX(50%);
+}
+
+.container .panel-id::before {
+  content: "#";
+}
+
+.container .panel-control {
+  display: none;
+}
+
+.container .panel-control:checked ~ .panel-id {
+  display: none;
+}
+
+.container .panel-control:checked ~ .panel-content {
+  display: flex;
+}
+
+.container .panel-content {
+  height: 100%;
+  flex-direction: column;
+  color: white;
+  letter-spacing: 0.01rem;
+  position: relative;
+  z-index: 5;
+  overflow: hidden;
+  display: none;
+  transition: display 1s;
+}
+
+.container .panel-content .head {
+  padding: 10px;
+  font-size: 2.5rem;
+  position: relative;
+}
+
+.container .panel-content .head::before {
+  content: "";
+  border-radius: 0.25rem;
+  border: 2.5px solid white;
+  margin-right: 0.75rem;
+}
+
+.container .panel-content .head::after {
+  content: "";
+  height: 78%;
+  width: 0;
+  border-radius: 0.25rem;
+  margin: 7px 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #15344899;
+  animation: squeezeout 2s 1s forwards;
+}
+
+.container .panel-content .icon {
+  color: inherit;
+  height: 1.125rem;
+}
+
+
+
+.container .panel-content .spacer {
+  flex: 1 0 auto;
+}
+
+.container .panel-content .body {
+  padding: 10px;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  position: relative;
+  transform: translateY(100%);
+  animation: slideInTop 2.5s 3s forwards;
+}
+
+.container .panel-content .body::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25rem;
+  border-top: 2.5px solid #dfd0b8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background: #15344899;
+}
+
+.container .panel-content .title {
+  color: limegreen;
+}
+
+.container .panel-content .value {
+  margin-bottom: 0.75rem;
+}
+
+@keyframes fall {
+  0% {
+    visibility: hidden;
+    transform: translateY(-100%);
+  }
+  100% {
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fly {
+  0% {
+    visibility: hidden;
+    transform: translateY(100%);
+  }
+  100% {
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInBottom {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slideInTop {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    flex: 1;
+  }
+  100% {
+    flex: 80%;
+  }
+}
+
+@keyframes squeezeout {
+  0% {
+    width: 1px;
+  }
+  100% {
+    width: 100px;
+  }
+}
